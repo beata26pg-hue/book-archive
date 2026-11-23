@@ -1,0 +1,56 @@
+:root {
+    /* Background */
+    --color-bg: #111315;
+    --color-sidebar: #171A1D;
+
+    /* Cards*/
+    --color-card: #1B1E21;
+    --color-card-hover: #24292D;
+    --color-border: #30363B;
+
+    /* Text */
+    --color-text: #F3F0E8;
+    --color-text-muted: #A2A7A6;
+
+    --color-green: #B5D6A4;
+    --color-green-dark: #7FAE8D;
+    --color-purple: #B9AEDB;
+    --color-peach: #E3AD8F;
+    --color-yellow: #E6C987;
+    --color-red: #D88F86;
+
+    /* UI */
+    --color-primary: var(--color-green);
+    --color-progress: var(--color-green);
+    --color-success: var(--color-green-dark);
+
+    /* Shadows */
+    --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    /* TYPOGRAPHY */
+    --font-family-sans: 'DM Sans', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: var(--color-bg);
+}
+
+.container {
+    width: 100vw;
+    max-width: 1900px;
+    padding: 20px;
+    border: 1px solid white;
+}
