@@ -1,0 +1,49 @@
+.add-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.add-book-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.add-book-form label {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-green);
+}
+
+.add-book-form input,
+.add-book-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--text-white);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.add-book-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.add-book-form input:focus,
+.add-book-form textarea:focus {
+    outline: none;
+    border-color: var(--bg-white);
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.12);
+}
+
+.add-book-form input::placeholder,
+.add-book-form textarea::placeholder {
+    color: #aaa;
+}
