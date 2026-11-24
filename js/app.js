@@ -15,7 +15,16 @@ const bookCount = document.getElementById("bookCount");
 const submitCancelBtn = document.getElementById("submitBtn");
 const cancelBtn = document.getElementById("btnCancel");
 
-
+//Labels
+const genreLabels = {
+    crime: "Krim",
+    biografi: "Biografi",
+    music: "Musikk",
+    roman: "Roman",
+    read: "Lest",
+    wait: "Ikke lest",
+    reading: "Leser nå",
+};
 //Get books
 let books = getBooks();
 
@@ -52,18 +61,19 @@ function renderBooks() {
             </p> `;
         return;
     }
-
-
     bookListTable.innerHTML = "<tr><th>Tittel</th><th>Forfatter</th><th>Sjanger</th><th>Status</th><th>Pages</th><th></th><th></th></tr>";
-
     books.forEach(book => {
 
         bookListTable.innerHTML += `
             <tr>
                 <td class="title">${book.title}</td>
                 <td class="author">${book.author}</td>
-                <td class="genre">${book.genre}</td>
-                <td class="status">${book.status} </td>
+               <td><span class="label ${book.genre}">
+                    ${genreLabels[book.genre]}
+                </span></td>
+                <td><span class="label ${book.status}">
+                    ${genreLabels[book.status]}
+                </span></td>
                 <td class="pages">${book.pages} </td>
                 <td>Rediger</td>
                 <td>Slett</td>
@@ -81,8 +91,8 @@ bookForm.addEventListener("submit", function (event) {
     const bookData = {
         title: inputTitle.value.trim(),
         author: inputAuthor.value.trim(),
-        genre: selectGenre.selectedOptions[0].textContent.trim(),
-        status: selectStatus.selectedOptions[0].textContent.trim(),
+        genre: selectGenre.value.trim(),
+        status: selectStatus.value.trim(),
         pages: inputPages.value.trim()
     };
 
