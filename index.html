@@ -26,8 +26,8 @@
 
 </head>
 
-<body class="container">
-    <header id="header" class="header">
+<body>
+    <header ader id="header" class="header">
         <div class="hero">
             <div class="logo"><img src="./assets/images/icons/book-open.svg" alt="åpen bok"></div>
             <div class="heading">
@@ -36,49 +36,41 @@
             </div>
         </div>
     </header>
-    <section class="cards">
+    <section class="cards container">
         <div class="card all-books">
-            <div class="img">
-                <div><img src="./assets/images/icons/bookmark.svg"></div>
-                <div class="info">
-                    <p class="bold">12</p>
-                    <p>Bøker i samlinger</p>
-                </div>
+            <div class="img"><img src="./assets/images/icons/chart-bar.svg"></div>
+            <div class="info">
+                <p class="count">12</p>
+                <p>Bøker i samlinger</p>
             </div>
         </div>
         <div class="card all-lest">
-            <div class="img">
-                <div><img src="./assets/images/icons/bookmark.svg"></div>
-                <div class="info">
-                    <p class="bold">8</p>
-                    <p>Bøker lest</p>
-                </div>
+            <div class="img"><img src="./assets/images/icons/check-circle.svg"></div>
+            <div class="info">
+                <p class="count">8</p>
+                <p>Bøker lest</p>
             </div>
         </div>
         <div class="card all-reading">
-            <div class="img">
-                <div><img src="./assets/images/icons/bookmark.svg"></div>
-                <div class="info">
-                    <p class="bold">12</p>
-                    <p>Bøker jeg leser nå</p>
-                </div>
+            <div class="img"><img src="./assets/images/icons/book-open.svg"></div>
+            <div class="info">
+                <p class="count">12</p>
+                <p>Bøker jeg leser nå</p>
             </div>
         </div>
         <div class="card stat">
-            <div class="img">
-                <div><img src="./assets/images/icons/bookmark.svg"> 67%</div>
-                <div class="info">
-                    <p class="bold">Lesefremdrift</p>
-                    <p>8 av tolv bøker lest</p>
-                </div>
+            <div class="img"><img src="./assets/images/icons/tag.svg"></div>
+            <div class="info">
+                <p class="bold">Lesefremdrift</p>
+                <p>8 av 12 bøker lest</p>
             </div>
         </div>
     </section>
 
-    <main class="dashboard">
+    <main class="dashboard container">
         <aside class="add-book">
             <h2>Legg til bok</h2>
-            <form class="add-book-form">
+            <form class="book-form" id="bookForm">
                 <div class="form-group">
                     <label for="title">Tittel:</label>
                     <input type="text" id="title" name="name" placeholder="Skriv boktittel" required>
@@ -88,12 +80,15 @@
                     <input type="text" id="author" name="author" placeholder="Skriv forfatternavn" required>
                 </div>
                 <div class="form-group">
-                    <label for="category">Sjanger:</label>
-                    <select id="category">
+                    <label for="pages">Antall sider:</label>
+                    <input type="text" id="pages" name="author" number placeholder="Antall sider" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Sjanger:</label>
+                    <select id="genre">
                         <option value="all">Velg sjanger</option>
                         <option value="crime">Krim</option>
                         <option value="biografi">Biografi</option>
-                        <option value="fag">Fag</option>
                         <option value="music">Musikk</option>
                         <option value="roman">Roman</option>
                     </select>
@@ -102,21 +97,22 @@
                     <label for="status">Status:</label>
                     <select id="status">
                         <option value="all">Velg status</option>
-                        <option value="a-z">Lest</option>
-                        <option value="new">Leser nå</option>
-                        <option value="lowPrice">Har lest</option>
+                        <option value="read">Lest</option>
+                        <option value="reading">Leser nå</option>
+                        <option value="wait">Har ikke lest</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button class="btn"> Legg til book</button>
+                    <button id="btnSaveCancel" class="btn"> Legg til book</button>
+                    <button id="btnCancel" class="btn btn-cancel">Avbryt</button>
+
                 </div>
             </form>
         </aside>
 
         <section class="my-books">
             <div class="search">
-
                 <div class="heading">
                     <h2>Mine bøker</h2>
                 </div>
@@ -156,34 +152,16 @@
                     <label for="status">Sorter etter:</label>
                     <select id="filterSort">
                         <option value="all">Sorter</option>
-                        <option value="a-z">Tittel A-Å</option>
-                        <option value="read">Tittel Å-A</option>
+                        <option value="a-z">Tittel A-Z</option>
+                        <option value="read">Tittel Z-A</option>
+                        <option value="rank">Popularitet/option>
                     </select>
                 </div>
             </div>
-            <div class="bookList" id="bookList">
-
-                <table>
-                    <tr>
-                        <th>Tittel</th>
-                        <th>Forfatter</th>
-                        <th>Sjanger</th>
-                        <th>Status</th>
-                        <th>Vurdering</th>
-                        <th></th>
-                        <th></th>
-
-                    </tr>
-                    <tr>
-                        <td>Sommerdager</td>
-                        <td>Lars Berg</td>
-                        <td>Krim</td>
-                        <td>Lest</td>
-                        <td>4/5</td>
-                        <td>Rediger</td>
-                        <td>Slett</td>
-                    </tr>
-
+            <div id="bookListDiv">
+                <table id="bookListTable">
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
         </section>

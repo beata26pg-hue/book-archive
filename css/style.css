@@ -10,6 +10,7 @@
 
     /* Text */
     --color-text: #F3F0E8;
+    --color-dark-text: #30363B;
     --color-text-muted: #A2A7A6;
 
     --color-green: #B5D6A4;
@@ -41,52 +42,123 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
     background-color: var(--color-bg);
-    color: var(--color-text)
+    color: var(--color-text);
 }
 
 svg {
     fill: var(--color-purple);
 }
 
+.bold {
+    font-weight: 600;
+}
+
+.label {
+    padding: 4px 12px;
+    border-radius: 16px;
+    color: var(--color-dark-text);
+    border: 1px solid var(--color-border);
+}
+
+.crime {
+    background-color: var(--color-red);
+}
+
+
+.biografi {
+    background-color: var(--color-green-dark);
+}
+
+
+.music {
+    background-color: var(--color-purple);
+}
+
+
+.roman {
+    background-color: var(--color-purple);
+}
+
+.read {
+    background-color: var(--color-green);
+}
+
+.wait {
+    background-color: var(--color-peach);
+}
+
+.reading {
+    background-color: var(--color-purple)
+}
+
 .container {
     width: 100vw;
     max-width: 1900px;
-    padding: 20px;
+    padding: 0 20px 20px;
 }
 
 .header {
     background-image: url(../assets/images/hero.png);
-    background-position: right 16px top 10px;
+    background-position: right 16px top 0;
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .hero {
     display: flex;
-    margin-bottom: 26px;
+    padding: 20px;
+    gap: 20px;
+
+    .heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
 
     h1 {
-        color: var(--color-purple)
+        color: var(--color-purple);
+        margin: 0;
+        font-size: 38px;
     }
+
 }
 
 .cards {
     display: flex;
     gap: 20px;
-    margin-bottom: 26px;
 
     .card {
         width: 25%;
-        height: 260px;
+        height: 120px;
         border: 1px solid var(--color-border);
         border-radius: var(--color-card);
         box-shadow: var(--shadow-card);
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
 
+        img {
+            width: 46px;
+            height: auto;
+        }
+
+        .info {
+            p.count {
+                font-size: 32px;
+                font-weight: 600;
+            }
+
+        }
     }
 }
 
@@ -107,6 +179,92 @@ svg {
         border-radius: var(--radius-xl);
         padding: 20px;
 
+        .search {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 26px;
+
+            input {
+                width: 100%;
+                padding: 12px 40px;
+                border-radius: var(--radius-md);
+                background-color: transparent;
+                border: 1px solid var(--color-border);
+                color: var(--color-text);
+            }
+
+            .search-box {
+                position: relative;
+
+                .search-icon {
+                    position: absolute;
+                    left: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--text-primary);
+
+                }
+            }
+        }
+
+        .filter {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+
+            .form-group {
+                display: flex;
+                justify-items: center;
+                align-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+    }
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+
+    thead {
+        background-color: var(--color-card-hover);
+    }
+
+    th {
+        padding: 16px 20px;
+        color: var(--color-purple);
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    td {
+        padding: 16px 20px;
+        color: var(--color-text);
+        font-size: 14px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    tbody tr:has(td):hover {
+        background-color: var(--color-purple);
+
+        td {
+            color: var(--color-card-hover);
+        }
     }
 }
 
