@@ -387,3 +387,38 @@ s .btn-delete:hover {
     width: 60px;
     margin: 0 auto;
 }
+
+/*Media query*/
+@media (max-width: 1024px) {
+    .cards {
+        flex-wrap: wrap;
+
+        .card {
+            flex: 1 1 calc(50% - 10px);
+        }
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+
+        .my-books .filter {
+
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .cards {
+        gap: 12px;
+
+    }
+
+    .card {
+        height: 50px;
+    }
+
+
+}
