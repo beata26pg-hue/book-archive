@@ -40,21 +40,21 @@
         <div class="card all-books">
             <div class="img"><img src="./assets/images/icons/chart-bar.svg"></div>
             <div class="info">
-                <p class="count">12</p>
+                <p class="count count-total">12</p>
                 <p>Bøker i samlinger</p>
             </div>
         </div>
         <div class="card all-lest">
             <div class="img"><img src="./assets/images/icons/check-circle.svg"></div>
             <div class="info">
-                <p class="count">8</p>
+                <p class="count count-read">8</p>
                 <p>Bøker lest</p>
             </div>
         </div>
         <div class="card all-reading">
             <div class="img"><img src="./assets/images/icons/book-open.svg"></div>
             <div class="info">
-                <p class="count">12</p>
+                <p class="count count-reading">12</p>
                 <p>Bøker jeg leser nå</p>
             </div>
         </div>
@@ -126,12 +126,13 @@
                     </span>
                     <input type="search" id="searchInput" placeholder="Søk etter titler eller forfatter">
                 </div>
+                <a href="./index.html" class="reset">Nullstill filter x</a>
             </div>
             <div class="filter">
                 <div class="form-group">
                     <label for="filterCat">Sjanger:</label>
                     <select id="filterCat">
-                        <option value="all">Velg sjanger</option>
+                        <option value="all">Alle</option>
                         <option value="crime">Krim</option>
                         <option value="biografi">Biografi</option>
                         <option value="fag">Fag</option>
@@ -142,10 +143,10 @@
                 <div class="form-group">
                     <label for="filterStatus">Status:</label>
                     <select id="filterStatus">
-                        <option value="all">Status</option>
-                        <option value="a-z">Lest</option>
-                        <option value="new">Skal lest</option>
-                        <option value="lowPrice">Påbegynt</option>
+                        <option value="all">Alle</option>
+                        <option value="read">Lest</option>
+                        <option value="wait">Skal lese</option>
+                        <option value="reading">Påbegynt</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -153,9 +154,9 @@
                     <select id="filterSort">
                         <option value="all">Sorter</option>
                         <option value="a-z">Tittel A-Z</option>
-                        <option value="read">Tittel Z-A</option>
+                        <option value="z-a">Tittel Z-A</option>
                         <option value="pages-asc">Sider Lavest</option>
-                        <option value="pades-desc">Sider Høyest</option>
+                        <option value="pages-desc">Sider Høyest</option>
 
                     </select>
                 </div>

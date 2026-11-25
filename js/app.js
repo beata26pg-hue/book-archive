@@ -53,10 +53,10 @@ function getBooks() {
 }
 
 //Get and display books
-function renderBooks() {
-    console.log("books", books.length);
+function renderBooks(books) {
 
     if (books.length === 0) {
+        console.log("books", books.length);
         bookListContainer.innerHTML = `
             <p class="empty-message">
                Bruk skjema på venstre side for å registrere din første bok.
@@ -182,7 +182,7 @@ bookForm.addEventListener("submit", function (event) {
     }
 
     saveBooks();
-    renderBooks();
+    renderBooks(books);
     resetForm();
 
 });
@@ -203,4 +203,4 @@ bookListTable.addEventListener("click", function (event) {
 
 });
 
-renderBooks();
+renderBooks(books);
