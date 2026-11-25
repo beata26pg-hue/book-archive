@@ -9,15 +9,6 @@ const filterStatus = document.getElementById("filterStatus");
 const filterSort = document.getElementById("filterSort");
 
 
-//Result count text
-//All
-const bookCountTotal = document.getElementsByName(".count-total");
-//Reading
-const bookCountRead = document.getElementsByClassName(".count-read");
-//Read
-const bookCountReading = document.getElementsByClassName("count-reading");
-
-
 // filter and search function 
 function filterBooks() {
     const searchText = searchInput.value.toLowerCase().trim();
@@ -67,8 +58,6 @@ searchInput.addEventListener("input", filterBooks);
 filterSort.addEventListener("change", filterBooks);
 filterStatus.addEventListener("change", filterBooks);
 filterCat.addEventListener("change", filterBooks);
-
-
 
 // Get and dispaly books
 renderBooks(books);

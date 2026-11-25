@@ -17,6 +17,16 @@ const btnCancel = document.getElementById("btnCancel");
 
 btnCancel.hidden = true;
 
+
+//Result count text
+//All
+const bookCountTotal = document.querySelectorAll(".count-total");
+//Read
+const bookCountRead = document.querySelectorAll(".count-read");
+//Reading
+const bookCountReading = document.querySelector(".count-reading");
+
+
 let editingBookId = null;
 
 //Labels
@@ -87,7 +97,17 @@ function renderBooks(books) {
         `;
 
     });
-    bookListTable.innerHTML += "</tbody";
+    bookListTable.innerHTML += "</tbody>";
+    //count
+    bookCountReading.textContent = books.filter(book => book.status === "reading").length;
+    bookCountTotal.forEach(element => {
+        element.textContent = books.length;
+    });
+
+    bookCountRead.forEach(element => {
+        element.textContent = books.filter(book => book.status === "read").length;
+    });
+
 }
 //Save book
 function saveBooks() {
