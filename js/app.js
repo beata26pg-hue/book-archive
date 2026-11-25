@@ -17,6 +17,12 @@ const btnCancel = document.getElementById("btnCancel");
 
 btnCancel.hidden = true;
 
+//Delete bok
+const cancelDelete = document.querySelector("#cancelDelete");
+const confirmDelete = document.querySelector("#confirmDelete");
+
+let deleteBokId = null;
+
 
 //Result count text
 //All
@@ -65,14 +71,16 @@ function getBooks() {
 //Get and display books
 function renderBooks(books) {
 
+    const emptyMessage = bookListContainer.querySelector(".empty-message");
+
     if (books.length === 0) {
-        console.log("books", books.length);
-        bookListContainer.innerHTML = `
-            <p class="empty-message">
-               Bruk skjema på venstre side for å registrere din første bok.
-            </p> `;
+        emptyMessage.hidden = false;
+        bookListTable.innerHTML = "";
+        updateBookCount(books);
         return;
     }
+
+    emptyMessage.hidden = true;
     bookListTable.innerHTML = "<tbody><tr><th>Tittel</th><th>Forfatter</th><th>Sjanger</th><th>Status</th><th>Pages</th><th></th><th></th></tr>";
     books.forEach(book => {
 
@@ -152,8 +160,11 @@ function editBook(id) {
     });
 
 }
-function deleteBook() {
 
+
+function deleteBook(id) {
+    deleteBokId = id;
+    deleteModal.classList.add("active");
 }
 
 function resetForm() {
@@ -166,7 +177,20 @@ function resetForm() {
         element.classList.remove("editing");
     });
 }
+function updateBookCount(books) {
 
+    bookCountReading.textContent =
+        books.filter(book => book.status === "reading").length;
+
+    bookCountTotal.forEach(element => {
+        element.textContent = books.length;
+    });
+
+    bookCountRead.forEach(element => {
+        element.textContent =
+            books.filter(book => book.status === "read").length;
+    });
+}
 //Event listeners
 bookForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -222,5 +246,33 @@ bookListTable.addEventListener("click", function (event) {
     }
 
 });
+// Delete btn click
+bookListTable.addEventListener("click", function (event) {
 
+    if (event.target.classList.contains("delete-btn")) {
+        const id = event.target.dataset.id;
+        deleteBook(id);
+    }
+
+});
+cancelDelete.addEventListener("click", () => {
+    deleteModal.classList.remove("active");
+    deleteBokId = null;
+});
+confirmDelete.addEventListener("click", () => {
+
+    books = books.filter(book =>
+        String(book.id) !== String(deleteBokId)
+    );
+
+    saveBooks();
+    renderBooks(books);
+
+    if (String(editingBookId) === String(deleteBokId)) {
+        resetForm();
+    }
+
+    deleteModal.classList.remove("active");
+    deleteBokId = null;
+});
 renderBooks(books);

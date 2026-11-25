@@ -40,21 +40,21 @@
         <div class="card all-books">
             <div class="img"><img src="./assets/images/icons/chart-bar.svg"></div>
             <div class="info">
-                <p class="count count-total">12</p>
+                <p class="count count-total">0</p>
                 <p>Bøker i samlinger</p>
             </div>
         </div>
         <div class="card all-lest">
             <div class="img"><img src="./assets/images/icons/check-circle.svg"></div>
             <div class="info">
-                <p class="count count-read">8</p>
+                <p class="count count-read">0</p>
                 <p>Bøker lest</p>
             </div>
         </div>
         <div class="card all-reading">
             <div class="img"><img src="./assets/images/icons/book-open.svg"></div>
             <div class="info">
-                <p class="count count-reading">12</p>
+                <p class="count count-reading">0</p>
                 <p>Bøker jeg leser nå</p>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="img"><img src="./assets/images/icons/tag.svg"></div>
             <div class="info">
                 <p class="bold">Lesefremdrift</p>
-                <p><span class="count-read">10</span> av <span class="count-total">10</span> bøker lest</p>
+                <p><span class="count-read">0</span> av <span class="count-total">0</span> bøker lest</p>
             </div>
         </div>
     </section>
@@ -162,6 +162,10 @@
                 </div>
             </div>
             <div id="bookListDiv">
+                <p class="empty-message">
+                    Bruk skjema på venstre side for å registrere din første bok.
+                </p>
+
                 <table id="bookListTable">
 
                 </table>
@@ -174,6 +178,26 @@
             <img src="./assets/images/icons/book-open.svg" alt="logo" width="120" height="40">
         </div>
     </footer>
+
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <h3>Slette bok?</h3>
+            <p>
+                Er du sikker på at du vil slette denne boken?
+                Handlingen kan ikke angres.
+            </p>
+
+            <div class="modal-btns">
+                <button class="btn-cancel-delete" id="cancelDelete">
+                    Avbryt
+                </button>
+
+                <button class="btn-delete" id="confirmDelete">
+                    Slett bok
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
