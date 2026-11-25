@@ -10,6 +10,10 @@ select {
     color: var(--color-text);
 }
 
+[hidden] {
+    display: none !important;
+}
+
 .book-form {
     display: flex;
     flex-direction: column;

@@ -66,7 +66,7 @@
             </div>
         </div>
     </section>
-
+    <!--FORM-->
     <main class="dashboard container">
         <aside class="add-book">
             <h2>Legg til bok</h2>
@@ -104,13 +104,13 @@
                 </div>
 
                 <div class="form-group">
-                    <button id="btnSaveCancel" class="btn"> Legg til book</button>
+                    <button id="btnSubmit" class="btn"> Legg til book</button>
                     <button id="btnCancel" class="btn btn-cancel">Avbryt</button>
 
                 </div>
             </form>
         </aside>
-
+        <!--Book table-->
         <section class="my-books">
             <div class="search">
                 <div class="heading">
@@ -154,14 +154,15 @@
                         <option value="all">Sorter</option>
                         <option value="a-z">Tittel A-Z</option>
                         <option value="read">Tittel Z-A</option>
-                        <option value="rank">Popularitet/option>
+                        <option value="pages-asc">Sider Lavest</option>
+                        <option value="pades-desc">Sider Høyest</option>
+
                     </select>
                 </div>
             </div>
             <div id="bookListDiv">
                 <table id="bookListTable">
-                    <tbody>
-                    </tbody>
+
                 </table>
             </div>
         </section>

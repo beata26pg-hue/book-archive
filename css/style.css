@@ -52,8 +52,53 @@ body {
     color: var(--color-text);
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
 svg {
     fill: var(--color-purple);
+}
+
+.delete-btn,
+.edit-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.delete-btn img,
+.edit-btn img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    pointer-events: none;
+
+}
+
+#bookListTable tr.editing {
+
+    background-color: var(--color-purple);
+
+    td {
+        color: var(--color-dark-text);
+    }
+}
+
+#bookForm.editing-form {
+    border: 2px solid var(--color-purple);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.delete-btn:hover,
+.edit-btn:hover {
+    border: 1px solid var(--color-text);
 }
 
 .bold {

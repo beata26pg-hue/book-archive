@@ -12,8 +12,12 @@ const bookListTable = document.getElementById("bookListTable");
 
 const bookCount = document.getElementById("bookCount");
 
-const submitCancelBtn = document.getElementById("submitBtn");
-const cancelBtn = document.getElementById("btnCancel");
+const btnSubmit = document.getElementById("btnSubmit");
+const btnCancel = document.getElementById("btnCancel");
+
+btnCancel.hidden = true;
+
+let editingBookId = null;
 
 //Labels
 const genreLabels = {
@@ -31,7 +35,6 @@ let books = getBooks();
 //Funcions
 
 function getBooks() {
-
     try {
         const booksFromLocalStorage = localStorage.getItem("books");
 
@@ -49,23 +52,22 @@ function getBooks() {
     }
 }
 
-//get and display books
+//Get and display books
 function renderBooks() {
     console.log("books", books.length);
 
     if (books.length === 0) {
-
         bookListContainer.innerHTML = `
             <p class="empty-message">
                Bruk skjema på venstre side for å registrere din første bok.
             </p> `;
         return;
     }
-    bookListTable.innerHTML = "<tr><th>Tittel</th><th>Forfatter</th><th>Sjanger</th><th>Status</th><th>Pages</th><th></th><th></th></tr>";
+    bookListTable.innerHTML = "<tbody><tr><th>Tittel</th><th>Forfatter</th><th>Sjanger</th><th>Status</th><th>Pages</th><th></th><th></th></tr>";
     books.forEach(book => {
 
         bookListTable.innerHTML += `
-            <tr>
+           <tr data-id="${book.id}">
                 <td class="title">${book.title}</td>
                 <td class="author">${book.author}</td>
                <td><span class="label ${book.genre}">
@@ -75,45 +77,19 @@ function renderBooks() {
                     ${genreLabels[book.status]}
                 </span></td>
                 <td class="pages">${book.pages} </td>
-                <td>Rediger</td>
-                <td>Slett</td>
+                 <td width="20"><button class="edit-btn" data-id="${book.id}">
+                        <img src="./assets/images/icons/edit.svg" alt="rediger">
+                    </button></td><td>
+                  <button class="delete-btn" data-id="${book.id}">
+                         <img src="./assets/images/icons/trash.svg" alt="slett">
+                    </button></td>
             </tr>
         `;
 
     });
+    bookListTable.innerHTML += "</tbody";
 }
-
-bookForm.addEventListener("submit", function (event) {
-
-    event.preventDefault();
-    const id = crypto.randomUUID()
-
-    const bookData = {
-        title: inputTitle.value.trim(),
-        author: inputAuthor.value.trim(),
-        genre: selectGenre.value.trim(),
-        status: selectStatus.value.trim(),
-        pages: inputPages.value.trim()
-    };
-
-    const newBook = {
-        id: id,
-        ...bookData
-
-    };
-
-    books.push(newBook);
-
-    saveBooks();
-    renderBooks();
-    resetForm();
-
-});
-cancelBtn.addEventListener("click", function () {
-    resetForm();
-});
-
-
+//Save book
 function saveBooks() {
 
     try {
@@ -123,8 +99,37 @@ function saveBooks() {
     }
 
 }
+//Edit book and add current css classes
+function editBook(id) {
+    const book = books.find(book => book.id === id);
 
-function editBook() {
+    if (!book) return;
+
+    editingBookId = id;
+    inputTitle.value = book.title;
+    inputAuthor.value = book.author;
+    inputPages.value = book.pages;
+    selectGenre.value = book.genre;
+    selectStatus.value = book.status;
+    btnSubmit.textContent = "Oppdater bok";
+    btnCancel.hidden = false;
+
+    // Css classes for currently editing row
+    document.querySelectorAll("#bookListTable tr").forEach(row => {
+        row.classList.remove("editing");
+    });
+
+    const selectedRow = document.querySelector(
+        `#bookListTable tr[data-id="${id}"]`
+    );
+
+    if (selectedRow) {
+        selectedRow.classList.add("editing");
+    }
+
+    bookForm.scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 function deleteBook() {
@@ -132,11 +137,70 @@ function deleteBook() {
 }
 
 function resetForm() {
-
+    btnSubmit.textContent = "Legg til book";
+    btnCancel.hidden = true;
     bookForm.reset();
-    cancelBtn.hidden = true;
-
+    editingBookId = null;
+    bookForm.classList.remove("editing-form");
+    document.querySelectorAll(".editing").forEach(element => {
+        element.classList.remove("editing");
+    });
 }
 
+//Event listeners
+bookForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const id = crypto.randomUUID();
+
+    const bookData = {
+        title: inputTitle.value.trim(),
+        author: inputAuthor.value.trim(),
+        genre: selectGenre.value.trim(),
+        status: selectStatus.value.trim(),
+        pages: inputPages.value.trim()
+    };
+
+    if (editingBookId !== null) {
+
+        // Find existing bok
+        const book = books.find(book => book.id === editingBookId);
+
+        // Update existing bok
+        book.title = bookData.title;
+        book.author = bookData.author;
+        book.genre = bookData.genre;
+        book.status = bookData.status;
+        book.pages = bookData.pages;
+
+    } else {
+        //create new bok
+        const newBook = {
+            id: id,
+            ...bookData
+        };
+        books.push(newBook);
+    }
+
+    saveBooks();
+    renderBooks();
+    resetForm();
+
+});
+btnCancel.addEventListener("click", function () {
+    resetForm();
+});
+
+// Edit btn click
+bookListTable.addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("edit-btn")) {
+
+        const id = event.target.dataset.id;
+        editBook(id);
+        bookForm.classList.add("editing-form");
+
+    }
+
+});
 
 renderBooks();
